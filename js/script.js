@@ -1,4 +1,4 @@
-
+document.addEventListener("DOMContentLoaded", function(event){
 /* identify different element and store value in variable */
 var $question = document.getElementById("question");
 var $feedback = document.getElementById("feedback");
@@ -20,6 +20,7 @@ function update(element,content,klass){
 }
 
 /* this is an object containing information for the game  */
+
 quiz = {
 	"name":"Super Hero Name Quiz",
 	"description":"How many super heroes can you name?",
@@ -37,23 +38,22 @@ $start.addEventListener('click',function(){ play(quiz) },false);
 
 /* Updates the initial score and hroughout the game play */
 function play(quiz){
-	ask();
-	check();
+	for(var i=0, question, answer, max=quiz.questions.length; i<max;i++) {
+
+		question = quiz.questions[i].question; // change is made here
+		ask(question);
+		check(answer);
+	}
+
 	gameOver();
 }
 
 
-for(var i=0, question, answer, max=quiz.questions.length; i<max;i++) {
-
-	question = quiz.questions[i].question; // change is made here
-	ask(question);
-	check(answer);
-}
 
 /* function to ask question */
 function ask(question) {
 	update($question,quiz.question+question);
-	answer=prompt("Enter your answer");
+	var answer=prompt("Enter your answer");
 }
 
 /* function to check answer and update score */
@@ -72,3 +72,5 @@ function gameOver(){
 	// inform the player that the game has finished and tell them how many points they have scored
 	update($question,"You Scored " + score + " points");
 }
+
+ });
