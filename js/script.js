@@ -1,27 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event){
-/* identify different element and store value in variable */
-var $question = document.getElementById("question");
-var $feedback = document.getElementById("feedback");
-var $score = document.getElementById("score");
-var $start = document.getElementById("start");
-
-var score = 0;
-
-update($score,score);
-
-/* The following function helps to update the question,answer,and score as well */
-function update(element,content,klass){
-	var p = element.firstChild || document.createElement("p");
-	p.textContent = content;
-	element.appendChild(p);
-	if(klass){
-		p.className=klass;
-	}
-}
-
-/* this is an object containing information for the game  */
-
-quiz = {
+var quiz = {
 	"name":"Super Hero Name Quiz",
 	"description":"How many super heroes can you name?",
 	"question":"What is the real name of ",
@@ -30,47 +7,63 @@ quiz = {
 		{ "question": "Batman", "answer": "Bruce Wayne" },
 		{ "question": "Wonder Woman", "answer": "Dianna Prince" }
 	]
-}
+};
 
-$start.addEventListener('click',function(){ play(quiz) },false);
+/* identify different element and store value in variable */
+	var $question = document.getElementById("question");
+	var $feedback = document.getElementById("feedback");
+	var $score = document.getElementById("score");
+	var $start = document.getElementById("start");
 
-
-
-/* Updates the initial score and hroughout the game play */
-function play(quiz){
-	for(var i=0, question, answer, max=quiz.questions.length; i<max;i++) {
-
-		question = quiz.questions[i].question; // change is made here
+	var score = 0;
+	var answer;
+	var i=0;
+/* Updates the initial score and throughout the game play */
+function play(update){
+	/* function to ask question */
+	for( i = 0; i<quiz.questions.length;i++){
+		question = quiz.questions[i].question;
 		ask(question);
 		check(answer);
 	}
-
 	gameOver();
 }
 
-
-
-/* function to ask question */
 function ask(question) {
-	update($question,quiz.question+question);
-	var answer=prompt("Enter your answer");
+	update( $question, quiz.question+question );
+	/*answer = prompt("Enter your answer");*/
 }
 
 /* function to check answer and update score */
-function check(answer) {
-		if(answer === quiz.questions[i].answer){ // quiz[i][1] is the ith answer	
+function check(question,answer) {
+	if(answer === quiz.questions[i].answer){
 		update($feedback,"Correct!","right");
 		// increase score by 1
 		score++;
-		update($score,score);
-		} else {
-		update($feedback,"Wrong!","wrong");
+		update($score,score)
+	} else {
+	update($feedback,"Wrong!","wrong");
 	}
 }
+
 
 function gameOver(){
 	// inform the player that the game has finished and tell them how many points they have scored
 	update($question,"You Scored " + score + " points");
 }
 
+/* The following function helps to update the question,answer,and score as well */
+function update(element,content,klass){
+	alert(i);
+	var p = element.firstChild || document.createElement("p");
+	p.textContent = content;
+	element.appendChild(p);
+	if(klass){
+		p.className=klass;
+	}
+}
+
+document.addEventListener("DOMContentLoaded", function(event){
+	update($score,score);
+	$start.addEventListener('click',function(){ play(  ) },false);
  });
