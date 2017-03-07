@@ -31,7 +31,7 @@ function play(update){
 
 function ask(question) {
 	update( $question, quiz.question+question );
-	/*answer = prompt("Enter your answer");*/
+	answer = prompt("Enter your answer");
 }
 
 /* function to check answer and update score */
@@ -54,7 +54,6 @@ function gameOver(){
 
 /* The following function helps to update the question,answer,and score as well */
 function update(element,content,klass){
-	alert(i);
 	var p = element.firstChild || document.createElement("p");
 	p.textContent = content;
 	element.appendChild(p);
@@ -65,5 +64,5 @@ function update(element,content,klass){
 
 document.addEventListener("DOMContentLoaded", function(event){
 	update($score,score);
-	$start.addEventListener('click',function(){ play(  ) },false);
+	$start.addEventListener('click',function(){ play() },false);
  });
