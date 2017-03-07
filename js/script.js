@@ -16,22 +16,24 @@ var quiz = {
 	var $start = document.getElementById("start");
 
 	var score = 0;
-	var answer;
-	var i=0;
+	var answer,i;
+
 /* Updates the initial score and throughout the game play */
-function play(update){
+function play(){
 	/* function to ask question */
-	for( i = 0; i<quiz.questions.length;i++){
+	for( i = 0; i < quiz.questions.length; i++ ){
+
 		question = quiz.questions[i].question;
 		ask(question);
-		check(answer);
+		//check(question,answer);
 	}
-	gameOver();
+	gameOver(score);
 }
 
 function ask(question) {
 	update( $question, quiz.question+question );
 	answer = prompt("Enter your answer");
+
 }
 
 /* function to check answer and update score */
@@ -40,23 +42,24 @@ function check(question,answer) {
 		update($feedback,"Correct!","right");
 		// increase score by 1
 		score++;
-		update($score,score)
+		update($score,score);
 	} else {
 	update($feedback,"Wrong!","wrong");
 	}
 }
 
 
-function gameOver(){
+function gameOver(score){
 	// inform the player that the game has finished and tell them how many points they have scored
 	update($question,"You Scored " + score + " points");
 }
 
 /* The following function helps to update the question,answer,and score as well */
 function update(element,content,klass){
-	var p = element.firstChild || document.createElement("p");
+	var p =  document.createElement("p");
 	p.textContent = content;
 	element.appendChild(p);
+
 	if(klass){
 		p.className=klass;
 	}
