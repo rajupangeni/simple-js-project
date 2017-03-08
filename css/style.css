@@ -1,12 +1,12 @@
 *{
-margin: 0;
-padding: 0;
+	margin: 0;
+	padding: 0;
 }
 header {
-font: bold 36px/120% Arial, Helvetica, sans-serif;
-background: #333;
-color: #c00;
-text-transform: uppercase;
+	font: bold 36px/120% Arial, Helvetica, sans-serif;
+	background: #333;
+	color: #c00;
+	text-transform: uppercase;
 }
 
 section p{
@@ -31,9 +31,9 @@ section p{
 	color:#600;
 }
 button {
-font: bold 24px/150% Arial, Helvetica, sans-serif;
-display: block;
-width: 300px;
-padding: 10px;
-margin: 10px auto;
+	font: bold 24px/150% Arial, Helvetica, sans-serif;
+	display: block;
+	width: 300px;
+	padding: 10px;
+	margin: 10px auto;
 }
