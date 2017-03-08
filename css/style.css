@@ -30,10 +30,19 @@ section p{
 	border:#900 2px solid;
 	color:#600;
 }
-button {
+input,button {
 	font: bold 24px/150% Arial, Helvetica, sans-serif;
 	display: block;
 	width: 300px;
 	padding: 10px;
 	margin: 10px auto;
+}
+body{
+	width: 400px;
+	margin: 0 auto;
+	background: #fff;
+	height:100vh;
+}
+html{
+	background: #444;
 }
