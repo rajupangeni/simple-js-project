@@ -14,30 +14,49 @@ var quiz = {
 	var $feedback = document.getElementById("feedback");
 	var $score = document.getElementById("score");
 	var $start = document.getElementById("start");
-
+	var $form = document.getElementById("answer");
 	var score = 0;
 	var answer,i;
 
 /* Updates the initial score and throughout the game play */
-function play(){
-	/* function to ask question */
-	for( i = 0; i < quiz.questions.length; i++ ){
 
-		question = quiz.questions[i].question;
+
+function hide(element) {
+	element.style.display = "none";
+}
+
+function show(element) {
+	element.style.display = "block";
+}
+
+hide($form);
+
+function play(){
+	hide($start);
+	show($form);
+	$form.addEventListener('submit', function(event) {
+		event.preventDefault();
+		check($form[0].value);
+	}, false);
+
+	/* function to ask question */
+	var i = 0;
+	chooseQuestion();
+	function chooseQuestion() {
+		var question = quiz.questions[i].question;
 		ask(question);
-		check(question,answer);
 	}
 	gameOver(score);
 }
 
 function ask(question) {
 	update( $question, quiz.question+question );
-	answer = prompt("Enter your answer");
-
+	$form[0].value = "";
+	$form[0].focus();
 }
 
 /* function to check answer and update score */
-function check(question,answer) {
+function check(question) {
 	if(answer === quiz.questions[i].answer){
 		update($feedback,"Correct!","right");
 		// increase score by 1
@@ -46,12 +65,20 @@ function check(question,answer) {
 	} else {
 	update($feedback,"Wrong!","wrong");
 	}
+	i++;
+	if(i === quiz.questions.length) {
+		gameOver();
+	} else {
+	chooseQuestion();
+	}
 }
 
 
 function gameOver(score){
 	// inform the player that the game has finished and tell them how many points they have scored
 	update($question,"You Scored " + score + " points");
+	hide($form);
+	show($start);
 }
 
 /* The following function helps to update the question,answer,and score as well */
