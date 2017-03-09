@@ -34,19 +34,21 @@ hide($form);
 function play(){
 	hide($start);
 	show($form);
-	$form.addEventListener('submit', function(event) {
-		event.preventDefault();
-		check($form[0].value);
-	}, false);
-
+	
 	/* function to ask question */
 	var i = 0;
 	chooseQuestion();
-	function chooseQuestion() {
-		var question = quiz.questions[i].question;
-		ask(question);
-	}
+	
+	/*$form.addEventListener('submit', function(event) {
+		event.preventDefault();
+		check($form[0].value);
+	}, false);*/
 	gameOver(score);
+}
+
+function chooseQuestion() {
+	var question = quiz.questions[i].question;
+	ask(question);
 }
 
 function ask(question) {
@@ -56,7 +58,7 @@ function ask(question) {
 }
 
 /* function to check answer and update score */
-function check(question) {
+function check(answer) {
 	if(answer === quiz.questions[i].answer){
 		update($feedback,"Correct!","right");
 		// increase score by 1
@@ -66,10 +68,10 @@ function check(question) {
 	update($feedback,"Wrong!","wrong");
 	}
 	i++;
-	if(i === quiz.questions.length) {
+	if(i === quiz.questions.length ) {
 		gameOver();
 	} else {
-	chooseQuestion();
+		chooseQuestion();
 	}
 }
 
@@ -93,6 +95,6 @@ function update(element,content,klass){
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
-	$start.addEventListener('click',function(){ play() },false);
 	update($score,score);
+	$start.addEventListener('click',function(){ play() },false);
  });
